@@ -5,6 +5,7 @@ const path = require( 'path' )
 /* import route */
 const homePage = require( './routes/myapp.js' )
 const getQuestion = require( './routes/myapp.js' )
+const postAnswers = require( './routes/myapp.js' )
 /* end */
 
 
@@ -18,6 +19,7 @@ app.use( express.static( path.join(__dirname , 'public') ) )
 
 app.use( homePage )
 app.use( getQuestion )
+
 
 
 
