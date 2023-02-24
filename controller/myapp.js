@@ -9,6 +9,7 @@ const dataGame = new  MyApp
 
 let getQuestion = ( req, res ) => {
 
+
     
     if ( dataGame.goodAnswer === dataGame.questions.length ) {
         res.json( 
@@ -16,7 +17,8 @@ let getQuestion = ( req, res ) => {
                 winner: true 
             } 
         )
-        console.log("winerr")
+        console.log("koniec gry")
+        return
     } else if ( dataGame.isGameOver ) {
         res.json(
             {
@@ -50,7 +52,8 @@ let postAnswers = ( req, res ) => {
             }
         )
         console.log( "Przegrales koniec gry " )
-        return;
+       
+        return
     }
 
     if ( isGoodAnswer ) {
@@ -71,8 +74,24 @@ let postAnswers = ( req, res ) => {
      
 }
 
+let getTipFriend = ( req, res ) => {
+    if( dataGame.callToFriendUsed ) return res.json(
+                                                    {
+                                                        text: 'To koło zostało już wykorzystane'
+                                                    }
+                                                   )
+    const doesFriendKnowAnswer = Math.random < .5
+    const question = dataGame.questions[dataGame.goodAnswer]
+    res.json(
+        {
+            text: doesFriendKnowAnswer? `Hmm wydaje mi sie ze znam odpowiedz ${ question.answers[question.correctAns] }` : `Hmmm.... nie wiem `
+        }
+    )
+}
+
 module.exports = {
     homePage,
     getQuestion,
-    postAnswers
+    postAnswers,
+    getTipFriend
 }

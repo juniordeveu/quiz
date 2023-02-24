@@ -23,6 +23,7 @@ class MyApp {
             correctAns:  1 
         }
     ]
+    
 }
 
 module.exports =     MyApp
